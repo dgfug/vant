@@ -570,7 +570,10 @@ exports[`should render demo and match snapshot 1`] = `
         Confirm
       </button>
     </div>
-    <div class="van-loading van-loading--circular van-picker__loading">
+    <div class="van-loading van-loading--circular van-picker__loading"
+         aria-live="polite"
+         aria-busy="true"
+    >
       <span class="van-loading__spinner van-loading__spinner--circular">
         <svg class="van-loading__circular"
              viewbox="25 25 50 50"
@@ -679,16 +682,20 @@ exports[`should render demo and match snapshot 1`] = `
        tabindex="0"
   >
     <div class="van-cell__title van-field__label">
-      <label>
+      <label id="van-field-label"
+             for="van-field-input"
+      >
         City
       </label>
     </div>
     <div class="van-cell__value van-field__value">
       <div class="van-field__body">
         <input type="text"
+               id="van-field-input"
                class="van-field__control"
                readonly
                placeholder="Choose City"
+               aria-labelledby="van-field-label"
         >
       </div>
     </div>

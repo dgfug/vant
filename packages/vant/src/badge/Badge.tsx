@@ -1,9 +1,9 @@
 import {
   computed,
-  PropType,
-  CSSProperties,
   defineComponent,
-  ExtractPropTypes,
+  type PropType,
+  type CSSProperties,
+  type ExtractPropTypes,
 } from 'vue';
 import {
   isDef,
@@ -13,18 +13,26 @@ import {
   numericProp,
   makeStringProp,
   createNamespace,
+  type Numeric,
 } from '../utils';
 
 const [name, bem] = createNamespace('badge');
+
+export type BadgePosition =
+  | 'top-left'
+  | 'top-right'
+  | 'bottom-left'
+  | 'bottom-right';
 
 const badgeProps = {
   dot: Boolean,
   max: numericProp,
   tag: makeStringProp<keyof HTMLElementTagNameMap>('div'),
   color: String,
-  offset: Array as unknown as PropType<[string | number, string | number]>,
+  offset: Array as unknown as PropType<[Numeric, Numeric]>,
   content: numericProp,
   showZero: truthProp,
+  position: makeStringProp<BadgePosition>('top-right'),
 };
 
 export type BadgeProps = ExtractPropTypes<typeof badgeProps>;
@@ -87,7 +95,10 @@ export default defineComponent({
       if (hasContent() || props.dot) {
         return (
           <div
-            class={bem({ dot: props.dot, fixed: !!slots.default })}
+            class={bem([
+              props.position,
+              { dot: props.dot, fixed: !!slots.default },
+            ])}
             style={style.value}
           >
             {renderContent()}

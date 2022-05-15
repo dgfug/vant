@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <title><%= title %></title>
+    <% if (description) { %>
     <meta name="description" content="<%= description %>" />
+    <% } %>
     <link rel="icon" type="image/png" href="<%= logo %>" />
     <meta
       name="viewport"
@@ -16,10 +18,9 @@
     <% if (baiduAnalytics) { %>
     <script>
       var _hmt = _hmt || [];
-      (function() {
+      (function () {
         var hm = document.createElement('script');
-        hm.src =
-          'https://hm.baidu.com/hm.js?<%= baiduAnalytics.seed %>';
+        hm.src = 'https://hm.baidu.com/hm.js?<%= baiduAnalytics.seed %>';
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(hm, s);
       })();

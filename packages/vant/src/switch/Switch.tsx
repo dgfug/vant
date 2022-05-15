@@ -1,4 +1,4 @@
-import { defineComponent, ExtractPropTypes } from 'vue';
+import { defineComponent, type ExtractPropTypes } from 'vue';
 import { addUnit, numericProp, unknownProp, createNamespace } from '../utils';
 import { useCustomFieldValue } from '@vant/use';
 import { Loading } from '../loading';
@@ -31,7 +31,7 @@ export default defineComponent({
 
   emits: ['change', 'update:modelValue'],
 
-  setup(props, { emit }) {
+  setup(props, { emit, slots }) {
     const isChecked = () => props.modelValue === props.activeValue;
 
     const onClick = () => {
@@ -46,6 +46,9 @@ export default defineComponent({
       if (props.loading) {
         const color = isChecked() ? props.activeColor : props.inactiveColor;
         return <Loading class={bem('loading')} color={color} />;
+      }
+      if (slots.node) {
+        return slots.node();
       }
     };
 
@@ -68,6 +71,7 @@ export default defineComponent({
             disabled,
           })}
           style={style}
+          tabindex={disabled ? undefined : 0}
           aria-checked={checked}
           onClick={onClick}
         >

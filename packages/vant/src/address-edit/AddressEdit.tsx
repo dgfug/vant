@@ -4,9 +4,9 @@ import {
   computed,
   nextTick,
   reactive,
-  PropType,
   defineComponent,
-  ExtractPropTypes,
+  type PropType,
+  type ExtractPropTypes,
 } from 'vue';
 
 // Utils
@@ -351,7 +351,6 @@ export default defineComponent({
               class={bem('button')}
               loading={props.isSaving}
               nativeType="submit"
-              onClick={onSave}
             />
             {props.showDelete && (
               <Button

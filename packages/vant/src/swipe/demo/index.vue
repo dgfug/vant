@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import VanSwipe from '..';
 import VanSwipeItem from '../../swipe-item';
-import { useTranslate } from '../../../docs/site/use-translate';
+import { cdnURL, useTranslate } from '../../../docs/site';
 import { Toast } from '../../toast';
 
 const t = useTranslate({
@@ -24,10 +24,10 @@ const t = useTranslate({
 });
 
 const images = [
-  'https://img.yzcdn.cn/vant/apple-1.jpg',
-  'https://img.yzcdn.cn/vant/apple-2.jpg',
-  'https://img.yzcdn.cn/vant/apple-3.jpg',
-  'https://img.yzcdn.cn/vant/apple-4.jpg',
+  cdnURL('apple-1.jpeg'),
+  cdnURL('apple-2.jpeg'),
+  cdnURL('apple-3.jpeg'),
+  cdnURL('apple-4.jpeg'),
 ];
 
 const onChange = (index: number) => Toast(t('message') + index);
@@ -90,8 +90,8 @@ const onChange = (index: number) => Toast(t('message') + index);
       <van-swipe-item>2</van-swipe-item>
       <van-swipe-item>3</van-swipe-item>
       <van-swipe-item>4</van-swipe-item>
-      <template #indicator="{ active }">
-        <div class="custom-indicator">{{ active + 1 }}/4</div>
+      <template #indicator="{ active, total }">
+        <div class="custom-indicator">{{ active + 1 }}/{{ total }}</div>
       </template>
     </van-swipe>
   </demo-block>

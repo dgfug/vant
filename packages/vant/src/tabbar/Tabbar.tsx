@@ -1,21 +1,22 @@
 import {
   ref,
-  PropType,
-  InjectionKey,
   defineComponent,
-  ExtractPropTypes,
+  type PropType,
+  type InjectionKey,
+  type ExtractPropTypes,
 } from 'vue';
 
 // Utils
 import {
   truthProp,
-  Interceptor,
   numericProp,
   getZIndexStyle,
   createNamespace,
   callInterceptor,
   makeNumericProp,
   BORDER_TOP_BOTTOM,
+  type Numeric,
+  type Interceptor,
 } from '../utils';
 
 // Composables
@@ -44,7 +45,7 @@ export type TabbarProps = ExtractPropTypes<typeof tabbarProps>;
 
 export type TabbarProvide = {
   props: TabbarProps;
-  setActive: (active: number | string, afterChange: () => void) => void;
+  setActive: (active: Numeric, afterChange: () => void) => void;
 };
 
 export const TABBAR_KEY: InjectionKey<TabbarProvide> = Symbol(name);
@@ -69,6 +70,7 @@ export default defineComponent({
       return (
         <div
           ref={root}
+          role="tablist"
           style={getZIndexStyle(zIndex)}
           class={[
             bem({ fixed }),
@@ -83,7 +85,7 @@ export default defineComponent({
       );
     };
 
-    const setActive = (active: number | string, afterChange: () => void) => {
+    const setActive = (active: Numeric, afterChange: () => void) => {
       callInterceptor(props.beforeChange, {
         args: [active],
         done() {

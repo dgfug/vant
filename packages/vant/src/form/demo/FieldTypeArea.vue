@@ -4,7 +4,7 @@ import VanField from '../../field';
 import VanPopup from '../../popup';
 import { ref } from 'vue';
 import { areaList } from '@vant/area-data';
-import { useTranslate } from '../../../docs/site/use-translate';
+import { useTranslate } from '../../../docs/site';
 import { areaListEn } from '../../area/demo/area-en';
 
 const t = useTranslate({
@@ -23,8 +23,8 @@ const t = useTranslate({
 const areaCode = ref('');
 const showArea = ref(false);
 
-const onConfirm = (values: AreaColumnOption[]) => {
-  areaCode.value = values
+const onConfirm = (areaValues: AreaColumnOption[]) => {
+  areaCode.value = areaValues
     .filter((item) => !!item)
     .map((item) => item.name)
     .join('/');

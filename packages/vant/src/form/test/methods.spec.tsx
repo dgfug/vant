@@ -94,7 +94,7 @@ test('resetValidation method - reset all fields', async () => {
     formRef.value?.resetValidation();
     await later();
     const errors = form.findAll('.van-field__error-message');
-    expect(errors.length).toEqual(0);
+    expect(errors).toHaveLength(0);
   }
 });
 
@@ -107,7 +107,7 @@ test('resetValidation method - reset two fields', async () => {
     formRef.value?.resetValidation(['A', 'B']);
     await later();
     const errors = form.findAll('.van-field__error-message');
-    expect(errors.length).toEqual(0);
+    expect(errors).toHaveLength(0);
   }
 });
 
@@ -119,11 +119,11 @@ test('resetValidation method - reset one field', async () => {
   } catch (err) {
     formRef.value?.resetValidation('A');
     await later();
-    expect(form.findAll('.van-field__error-message').length).toEqual(1);
+    expect(form.findAll('.van-field__error-message')).toHaveLength(1);
 
     formRef.value?.resetValidation('B');
     await later();
-    expect(form.findAll('.van-field__error-message').length).toEqual(0);
+    expect(form.findAll('.van-field__error-message')).toHaveLength(0);
   }
 });
 
@@ -136,4 +136,20 @@ test('scrollToField method', () => {
 
   formRef.value?.scrollToField('A');
   expect(fn).toHaveBeenCalledTimes(1);
+});
+
+test('getValues method should return all current values', () => {
+  const formRef = ref<FormInstance>();
+  mount({
+    render() {
+      return (
+        <Form ref={formRef}>
+          <Field name="A" modelValue="123" />
+          <Field name="B" modelValue="456" />
+        </Form>
+      );
+    },
+  });
+
+  expect(formRef.value?.getValues()).toEqual({ A: '123', B: '456' });
 });

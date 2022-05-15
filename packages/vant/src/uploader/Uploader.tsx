@@ -1,29 +1,30 @@
 import {
   ref,
   reactive,
-  PropType,
   defineComponent,
-  ExtractPropTypes,
+  onBeforeUnmount,
+  type PropType,
+  type ExtractPropTypes,
 } from 'vue';
 
 // Utils
 import {
   pick,
   extend,
+  toArray,
   isPromise,
   truthProp,
-  numericProp,
   Interceptor,
   getSizeStyle,
   makeArrayProp,
   makeStringProp,
   makeNumericProp,
-  ComponentInstance,
+  type Numeric,
+  type ComponentInstance,
 } from '../utils';
 import {
   bem,
   name,
-  toArray,
   isOversize,
   filterFiles,
   isImageFile,
@@ -36,7 +37,7 @@ import { useExpose } from '../composables/use-expose';
 
 // Components
 import { Icon } from '../icon';
-import { ImagePreview, ImagePreviewOptions } from '../image-preview';
+import { ImagePreview, type ImagePreviewOptions } from '../image-preview';
 import UploaderPreviewItem from './UploaderPreviewItem';
 
 // Types
@@ -69,7 +70,9 @@ const uploaderProps = {
   modelValue: makeArrayProp<UploaderFileListItem>(),
   beforeRead: Function as PropType<UploaderBeforeRead>,
   beforeDelete: Function as PropType<Interceptor>,
-  previewSize: numericProp,
+  previewSize: [Number, String, Array] as PropType<
+    Numeric | [Numeric, Numeric]
+  >,
   previewImage: truthProp,
   previewOptions: Object as PropType<ImagePreviewOptions>,
   previewFullImage: truthProp,
@@ -97,6 +100,7 @@ export default defineComponent({
 
   setup(props, { emit, slots }) {
     const inputRef = ref();
+    const urls: string[] = [];
 
     const getDetail = (index = props.modelValue.length) => ({
       name: props.name,
@@ -225,7 +229,13 @@ export default defineComponent({
       if (props.previewFullImage) {
         const imageFiles = props.modelValue.filter(isImageFile);
         const images = imageFiles
-          .map((item) => item.content || item.url)
+          .map((item) => {
+            if (item.file && !item.url) {
+              item.url = URL.createObjectURL(item.file);
+              urls.push(item.url);
+            }
+            return item.url;
+          })
           .filter(Boolean) as string[];
 
         imagePreview = ImagePreview(
@@ -270,7 +280,7 @@ export default defineComponent({
 
       return (
         <UploaderPreviewItem
-          v-slots={{ 'preview-cover': slots['preview-cover'] }}
+          v-slots={pick(slots, ['preview-cover', 'preview-delete'])}
           item={item}
           index={index}
           onClick={() => emit('click-preview', item, getDetail(index))}
@@ -337,6 +347,10 @@ export default defineComponent({
         inputRef.value.click();
       }
     };
+
+    onBeforeUnmount(() => {
+      urls.forEach((url) => URL.revokeObjectURL(url));
+    });
 
     useExpose<UploaderExpose>({
       chooseFile,

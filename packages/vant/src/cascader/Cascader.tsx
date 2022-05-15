@@ -2,9 +2,9 @@ import {
   ref,
   watch,
   nextTick,
-  PropType,
   defineComponent,
-  ExtractPropTypes,
+  type PropType,
+  type ExtractPropTypes,
 } from 'vue';
 import {
   extend,
@@ -14,6 +14,7 @@ import {
   makeStringProp,
   createNamespace,
   HAPTICS_FEEDBACK,
+  type Numeric,
 } from '../utils';
 
 // Components
@@ -33,6 +34,7 @@ const cascaderProps = {
   closeable: truthProp,
   swipeable: truthProp,
   closeIcon: makeStringProp('cross'),
+  showHeader: truthProp,
   modelValue: numericProp,
   fieldNames: Object as PropType<CascaderFieldNames>,
   placeholder: String,
@@ -67,7 +69,7 @@ export default defineComponent({
 
     const getSelectedOptionsByValue = (
       options: CascaderOption[],
-      value: string | number
+      value: Numeric
     ): CascaderOption[] | undefined => {
       for (const option of options) {
         if (option[valueKey] === value) {
@@ -185,28 +187,31 @@ export default defineComponent({
     const onClickTab = ({ name, title }: TabsClickTabEventParams) =>
       emit('click-tab', name, title);
 
-    const renderHeader = () => (
-      <div class={bem('header')}>
-        <h2 class={bem('title')}>
-          {slots.title ? slots.title() : props.title}
-        </h2>
-        {props.closeable ? (
-          <Icon
-            name={props.closeIcon}
-            class={[bem('close-icon'), HAPTICS_FEEDBACK]}
-            onClick={onClose}
-          />
-        ) : null}
-      </div>
-    );
+    const renderHeader = () =>
+      props.showHeader ? (
+        <div class={bem('header')}>
+          <h2 class={bem('title')}>
+            {slots.title ? slots.title() : props.title}
+          </h2>
+          {props.closeable ? (
+            <Icon
+              name={props.closeIcon}
+              class={[bem('close-icon'), HAPTICS_FEEDBACK]}
+              onClick={onClose}
+            />
+          ) : null}
+        </div>
+      ) : null;
 
     const renderOption = (
       option: CascaderOption,
       selectedOption: CascaderOption | null,
       tabIndex: number
     ) => {
-      const selected =
-        selectedOption && option[valueKey] === selectedOption[valueKey];
+      const { disabled } = option;
+      const selected = !!(
+        selectedOption && option[valueKey] === selectedOption[valueKey]
+      );
       const color = option.color || (selected ? props.activeColor : undefined);
 
       const Text = slots.option ? (
@@ -217,14 +222,12 @@ export default defineComponent({
 
       return (
         <li
-          class={[
-            bem('option', {
-              selected,
-              disabled: option.disabled,
-            }),
-            option.className,
-          ]}
+          role="menuitemradio"
+          class={[bem('option', { selected, disabled }), option.className]}
           style={{ color }}
+          tabindex={disabled ? undefined : selected ? 0 : -1}
+          aria-checked={selected}
+          aria-disabled={disabled || undefined}
           onClick={() => onSelect(option, tabIndex)}
         >
           {Text}
@@ -240,7 +243,7 @@ export default defineComponent({
       selectedOption: CascaderOption | null,
       tabIndex: number
     ) => (
-      <ul class={bem('options')}>
+      <ul role="menu" class={bem('options')}>
         {options.map((option) =>
           renderOption(option, selectedOption, tabIndex)
         )}
@@ -269,10 +272,10 @@ export default defineComponent({
     const renderTabs = () => (
       <Tabs
         v-model:active={activeTab.value}
+        shrink
         animated
         class={bem('tabs')}
         color={props.activeColor}
-        swipeThreshold={0}
         swipeable={props.swipeable}
         onClick-tab={onClickTab}
       >

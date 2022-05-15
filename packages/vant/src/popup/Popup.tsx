@@ -3,14 +3,15 @@ import {
   watch,
   provide,
   Teleport,
+  nextTick,
   computed,
   onMounted,
   Transition,
   onActivated,
-  CSSProperties,
   onDeactivated,
   defineComponent,
-  ExtractPropTypes,
+  type CSSProperties,
+  type ExtractPropTypes,
 } from 'vue';
 
 // Utils
@@ -35,13 +36,8 @@ import { POPUP_TOGGLE_KEY } from '../composables/on-popup-reopen';
 import { Icon } from '../icon';
 import { Overlay } from '../overlay';
 
-export type PopupPosition = 'top' | 'left' | 'bottom' | 'right' | 'center' | '';
-
-export type PopupCloseIconPosition =
-  | 'top-left'
-  | 'top-right'
-  | 'bottom-left'
-  | 'bottom-right';
+// Types
+import type { PopupPosition, PopupCloseIconPosition } from './types';
 
 const popupProps = extend({}, popupSharedProps, {
   round: Boolean,
@@ -52,6 +48,7 @@ const popupProps = extend({}, popupSharedProps, {
   iconPrefix: String,
   closeOnPopstate: Boolean,
   closeIconPosition: makeStringProp<PopupCloseIconPosition>('top-right'),
+  safeAreaInsetTop: Boolean,
   safeAreaInsetBottom: Boolean,
 });
 
@@ -71,9 +68,9 @@ export default defineComponent({
   emits: [
     'open',
     'close',
-    'click',
     'opened',
     'closed',
+    'keydown',
     'update:show',
     'click-overlay',
     'click-close-icon',
@@ -176,12 +173,13 @@ export default defineComponent({
       }
     };
 
-    const onClick = (event: MouseEvent) => emit('click', event);
     const onOpened = () => emit('opened');
     const onClosed = () => emit('closed');
+    const onKeydown = (event: KeyboardEvent) => emit('keydown', event);
 
     const renderPopup = lazyRender(() => {
-      const { round, position, safeAreaInsetBottom } = props;
+      const { round, position, safeAreaInsetTop, safeAreaInsetBottom } = props;
+
       return (
         <div
           v-show={props.show}
@@ -192,9 +190,12 @@ export default defineComponent({
               round,
               [position]: position,
             }),
-            { 'van-safe-area-bottom': safeAreaInsetBottom },
+            {
+              'van-safe-area-top': safeAreaInsetTop,
+              'van-safe-area-bottom': safeAreaInsetBottom,
+            },
           ]}
-          onClick={onClick}
+          onKeydown={onKeydown}
           {...attrs}
         >
           {slots.default?.()}
@@ -221,10 +222,17 @@ export default defineComponent({
 
     watch(
       () => props.show,
-      (value) => {
-        if (value) {
+      (show) => {
+        if (show && !opened) {
           open();
-        } else {
+
+          if (attrs.tabindex === 0) {
+            nextTick(() => {
+              popupRef.value?.focus();
+            });
+          }
+        }
+        if (!show && opened) {
           opened = false;
           emit('close');
         }

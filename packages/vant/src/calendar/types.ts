@@ -1,4 +1,5 @@
 import type { ComponentPublicInstance, ComputedRef, Ref } from 'vue';
+import type { Numeric } from '../utils';
 import type { CalendarProps } from './Calendar';
 import type { CalendarMonthProps } from './CalendarMonth';
 
@@ -18,7 +19,7 @@ export type CalendarDayType =
 
 export type CalendarDayItem = {
   date?: Date;
-  text?: string | number;
+  text?: Numeric;
   type?: CalendarDayType;
   topInfo?: string;
   className?: unknown;
@@ -42,7 +43,7 @@ export type CalendarMonthInstance = ComponentPublicInstance<
     getTitle: () => string;
     getHeight: () => number;
     setVisible: (value?: boolean | undefined) => void;
-    scrollIntoView: (body: Element) => void;
+    scrollToDate: (body: Element, targetDate: Date) => void;
     disabledDays: Ref<ComputedRef<CalendarDayItem[]>>;
   }
 >;

@@ -1,4 +1,4 @@
-import { PropType, defineComponent, ExtractPropTypes } from 'vue';
+import { defineComponent, type PropType, type ExtractPropTypes } from 'vue';
 import {
   addUnit,
   truthProp,
@@ -7,6 +7,7 @@ import {
   makeStringProp,
   makeNumericProp,
   createNamespace,
+  type Numeric,
 } from '../utils';
 
 const [name, bem] = createNamespace('skeleton');
@@ -26,9 +27,7 @@ const skeletonProps = {
   titleWidth: numericProp,
   avatarShape: makeStringProp<SkeletonAvatarShape>('round'),
   rowWidth: {
-    type: [Number, String, Array] as PropType<
-      number | string | (number | string)[]
-    >,
+    type: [Number, String, Array] as PropType<Numeric | Numeric[]>,
     default: DEFAULT_ROW_WIDTH,
   },
 };
@@ -38,9 +37,11 @@ export type SkeletonProps = ExtractPropTypes<typeof skeletonProps>;
 export default defineComponent({
   name,
 
+  inheritAttrs: false,
+
   props: skeletonProps,
 
-  setup(props, { slots }) {
+  setup(props, { slots, attrs }) {
     const renderAvatar = () => {
       if (props.avatar) {
         return (
@@ -78,7 +79,7 @@ export default defineComponent({
     };
 
     const renderRows = () =>
-      Array(props.row)
+      Array(+props.row)
         .fill('')
         .map((_, i) => (
           <div class={bem('row')} style={{ width: addUnit(getRowWidth(i)) }} />
@@ -90,7 +91,10 @@ export default defineComponent({
       }
 
       return (
-        <div class={bem({ animate: props.animate, round: props.round })}>
+        <div
+          class={bem({ animate: props.animate, round: props.round })}
+          {...attrs}
+        >
           {renderAvatar()}
           <div class={bem('content')}>
             {renderTitle()}

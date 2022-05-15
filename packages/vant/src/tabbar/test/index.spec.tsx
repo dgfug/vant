@@ -10,6 +10,7 @@ function getMockRouter() {
   const $route = reactive({
     name: '/',
     path: '/',
+    matched: [{ name: '/', path: '/' }],
   });
   const push = (val: unknown) => {
     if (typeof val === 'string') {
@@ -18,6 +19,7 @@ function getMockRouter() {
     } else {
       Object.assign($route, val);
     }
+    $route.matched = [{ name: $route.name, path: $route.path }];
   };
   const $router = {
     push,
@@ -196,4 +198,22 @@ test('should render placeholder element when using placeholder prop', async () =
   await later();
   expect(wrapper.html()).toMatchSnapshot();
   restore();
+});
+
+test('should render badge-props prop correctly', async () => {
+  const wrapper = mount({
+    render() {
+      return (
+        <Tabbar>
+          <TabbarItem badge={0} badgeProps={{ color: 'blue' }}>
+            Tab
+          </TabbarItem>
+        </Tabbar>
+      );
+    },
+  });
+
+  await nextTick();
+  const badge = wrapper.find('.van-badge');
+  expect(badge.style.backgroundColor).toEqual('blue');
 });

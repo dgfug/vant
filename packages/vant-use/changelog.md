@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.3.6
+
+- Fix missing VisibilityState type
+
+## v1.3.5
+
+- Fix useChildren missing subTree when flattening vnodes
+
+## v1.3.4
+
+- Fix useClickAway failed in SSR
+
 ### v1.3.3
 
 - Allow to call useWindowSize outside setup
@@ -7,7 +19,7 @@
 
 ### v1.3.2
 
--Remove passive event polyfill
+- Remove passive event polyfill
 
 ### v1.3.1
 

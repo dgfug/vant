@@ -25,9 +25,15 @@ app.use(CollapseItem);
 
 ```html
 <van-collapse v-model="activeNames">
-  <van-collapse-item title="标题1" name="1">内容</van-collapse-item>
-  <van-collapse-item title="标题2" name="2">内容</van-collapse-item>
-  <van-collapse-item title="标题3" name="3">内容</van-collapse-item>
+  <van-collapse-item title="标题1" name="1">
+    代码是写出来给人看的，附带能在机器上运行。
+  </van-collapse-item>
+  <van-collapse-item title="标题2" name="2">
+    技术无非就是那些开发它的人的共同灵魂。
+  </van-collapse-item>
+  <van-collapse-item title="标题3" name="3">
+    在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。
+  </van-collapse-item>
 </van-collapse>
 ```
 
@@ -48,9 +54,15 @@ export default {
 
 ```html
 <van-collapse v-model="activeName" accordion>
-  <van-collapse-item title="标题1" name="1">内容</van-collapse-item>
-  <van-collapse-item title="标题2" name="2">内容</van-collapse-item>
-  <van-collapse-item title="标题3" name="3">内容</van-collapse-item>
+  <van-collapse-item title="标题1" name="1">
+    代码是写出来给人看的，附带能在机器上运行。
+  </van-collapse-item>
+  <van-collapse-item title="标题2" name="2">
+    技术无非就是那些开发它的人的共同灵魂。
+  </van-collapse-item>
+  <van-collapse-item title="标题3" name="3">
+    在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。
+  </van-collapse-item>
 </van-collapse>
 ```
 
@@ -71,9 +83,15 @@ export default {
 
 ```html
 <van-collapse v-model="activeNames">
-  <van-collapse-item title="标题1" name="1">内容</van-collapse-item>
-  <van-collapse-item title="标题2" name="2" disabled>内容</van-collapse-item>
-  <van-collapse-item title="标题3" name="3" disabled>内容</van-collapse-item>
+  <van-collapse-item title="标题1" name="1">
+    代码是写出来给人看的，附带能在机器上运行。
+  </van-collapse-item>
+  <van-collapse-item title="标题2" name="2" disabled>
+    技术无非就是那些开发它的人的共同灵魂。
+  </van-collapse-item>
+  <van-collapse-item title="标题3" name="3" disabled>
+    在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。
+  </van-collapse-item>
 </van-collapse>
 ```
 
@@ -87,10 +105,10 @@ export default {
     <template #title>
       <div>标题1 <van-icon name="question-o" /></div>
     </template>
-    内容
+    代码是写出来给人看的，附带能在机器上运行。
   </van-collapse-item>
   <van-collapse-item title="标题2" name="2" icon="shop-o">
-    内容
+    技术无非就是那些开发它的人的共同灵魂。
   </van-collapse-item>
 </van-collapse>
 ```
@@ -127,7 +145,7 @@ export default {
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | name | 唯一标识符，默认为索引值 | _number \| string_ | `index` |
-| icon | 标题栏左侧[图标名称](#/zh-CN/icon)或图片链接 | _string_ | - |
+| icon | 标题栏左侧图标名称或图片链接，等同于 Icon 组件的 [name 属性](#/zh-CN/icon#props) | _string_ | - |
 | size | 标题栏大小，可选值为 `large` | _string_ | - |
 | title | 标题栏左侧内容 | _number \| string_ | - |
 | value | 标题栏右侧内容 | _number \| string_ | - |
@@ -136,6 +154,7 @@ export default {
 | is-link | 是否展示标题栏右侧箭头并开启点击反馈 | _boolean_ | `true` |
 | disabled | 是否禁用面板 | _boolean_ | `false` |
 | readonly `v3.0.12` | 是否为只读状态，只读状态下无法操作面板 | _boolean_ | `false` |
+| lazy-render `v3.4.5` | 是否在首次展开时才渲染面板内容 | _boolean_ | `true` |
 | title-class | 左侧标题额外类名 | _string_ | - |
 | value-class | 右侧内容额外类名 | _string_ | - |
 | label-class | 描述信息额外类名 | _string_ | - |

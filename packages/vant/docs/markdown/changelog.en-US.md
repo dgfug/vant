@@ -2,7 +2,10 @@
 
 ### Tips
 
-The current document is the changelog of Vant 3. If you want to view the changelog of Vant 2, please visit [Vant 2 Changelog](https://youzan.github.io/vant/#/en-US/changelog).
+The current document is the changelog of Vant 3, other versions:
+
+- [Vant 2 Changelog](https://youzan.github.io/vant/v2/#/en-US/changelog)
+- [Vant 4 Changelog](https://youzan.github.io/vant/v4/#/en-US/changelog)
 
 ### Intro
 
@@ -16,22 +19,331 @@ Vant follows [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/).
 
 ## Details
 
+### [v3.4.9](https://github.com/youzan/vant/compare/v3.4.8...v3.4.9)
+
+`2022-05-02`
+
+**Feature**
+
+- Form: support setting multiple validate-trigger [#10544](https://github.com/youzan/vant/issues/10544)
+- Empty: localize all images [#10514](https://github.com/youzan/vant/issues/10514) [#10515](https://github.com/youzan/vant/issues/10515) [#10516](https://github.com/youzan/vant/issues/10516)
+- Loading: add aria to improve a11y [#10568](https://github.com/youzan/vant/issues/10568)
+
+**Bug Fixes**
+
+- @vant/area-data: only publish dist folder to npm [f927f6](https://github.com/youzan/vant/commit/f927f6a7518cf7d08ec8abc5dd35019685c19e3a)
+
+### [v3.4.8](https://github.com/youzan/vant/compare/v3.4.7...v3.4.8)
+
+`2022-04-16`
+
+**Feature**
+
+- CalendarDay: add default margin-bottom [#10441](https://github.com/youzan/vant/issues/10441)
+- Empty: support set the image size separately [#10465](https://github.com/youzan/vant/issues/10465)
+- Field: add enterkeyhint prop [#10478](https://github.com/youzan/vant/issues/10478)
+- Form: add getValues method [#10511](https://github.com/youzan/vant/issues/10511)
+- Icon: add some icons for ShareSheet [#10468](https://github.com/youzan/vant/issues/10468)
+- Locale: add Danish lang [#10513](https://github.com/youzan/vant/issues/10513)
+- ShareSheet: no longer rely on CDN images [#10469](https://github.com/youzan/vant/issues/10469)
+- Add event arguments in web-types.json [#10474](https://github.com/youzan/vant/issues/10474)
+
+**Bug Fixes**
+
+- DatetimePicker: modeValue is inconsistent with the selected data [#10448](https://github.com/youzan/vant/issues/10448)
+- Rate: support precisely selected [#10500](https://github.com/youzan/vant/issues/10500)
+
+### [v3.4.7](https://github.com/youzan/vant/compare/v3.4.6...v3.4.7)
+
+`2022-03-29`
+
+**Feature**
+
+- @vant/area-data: update counties of NanJing [#10410](https://github.com/youzan/vant/issues/10410)
+- CouponList: update empty image [#10436](https://github.com/youzan/vant/issues/10436)
+- Locale: add Icelandic lang [#10418](https://github.com/youzan/vant/issues/10418)
+- Locale: add Lao lang [#10388](https://github.com/youzan/vant/issues/10388)
+- Locale: add Swedish lang [#10419](https://github.com/youzan/vant/issues/10419)
+- NumberKeyboard: improve shuffle algorithm [#10428](https://github.com/youzan/vant/issues/10428)
+- Uploader: support set the preview size separately [#10438](https://github.com/youzan/vant/issues/10438)
+
+**Bug Fixes**
+
+- Calendar: scrollToDate method is invalid [#10432](https://github.com/youzan/vant/issues/10432)
+- DatetimePicker: fix minDate && maxDate watcher [#10431](https://github.com/youzan/vant/issues/10431)
+- IndexBar: allow active bottom anchor [#10404](https://github.com/youzan/vant/issues/10404)
+- Tab: add key when render TabsTitle [#10392](https://github.com/youzan/vant/issues/10392)
+- fix wrong ternary expression [#10426](https://github.com/youzan/vant/issues/10426)
+
+### [v3.4.6](https://github.com/youzan/vant/compare/v3.4.5...v3.4.6)
+
+`2022-03-13`
+
+**Feature**
+
+- Style: add van-safe-area-top class [#10356](https://github.com/youzan/vant/issues/10356)
+- Calendar: add safe-area-inset-top prop [#10358](https://github.com/youzan/vant/issues/10358)
+- Popup: add safe-area-inset-top prop [#10357](https://github.com/youzan/vant/issues/10357)
+
+**Bug Fixes**
+
+- Skeleton: fix non-props attributes warning [#10384](https://github.com/youzan/vant/issues/10384)
+- SwipeCell: cell should stopPropagation when lockClick is true [#10319](https://github.com/youzan/vant/issues/10319)
+- Toast: failed to render message after changing type [#10311](https://github.com/youzan/vant/issues/10311)
+- fix missing VisibilityState after typescript 4.6.0 [#10370](https://github.com/youzan/vant/issues/10370)
+
+### [v3.4.5](https://github.com/compare/v3.4.3...v3.4.5)
+
+`2022-02-14`
+
+**Feature**
+
+- CollapseItem: add lazy-render prop [#10270](https://github.com/youzan/vant/issues/10270)
+- Dialog: support enter/esc keyboard event [#10261](https://github.com/youzan/vant/issues/10261)
+- Locale: add Bangla (Bangladesh) [#10287](https://github.com/youzan/vant/issues/10287)
+- Locale: add Indonesian translation [#10289](https://github.com/youzan/vant/issues/10289)
+- Locale: add Italian translation [#10288](https://github.com/youzan/vant/issues/10288)
+- Locale: add Ukrainian translation [#10291](https://github.com/youzan/vant/issues/10291)
+- Locale: add Vietnamese translation [#10294](https://github.com/youzan/vant/issues/10294)
+
+**style**
+
+- SubmitBar: using english colon [#10286](https://github.com/youzan/vant/issues/10286)
+
+**Types**
+
+- IndexBar: index-list prop can includes number [#10273](https://github.com/youzan/vant/issues/10273)
+- Toast: fix missing teleport prop [#10272](https://github.com/youzan/vant/issues/10272)
+- Uploader: fix UploaderBeforeRead type [#10274](https://github.com/youzan/vant/issues/10274)
+
+### [v3.4.4](https://github.com/youzan/vant/compare/v3.4.4...v3.4.3)
+
+`2022-02-07`
+
+- switch default npm tag to `latest`
+
+### [v3.4.3](https://github.com/compare/v3.4.2...v3.4.3)
+
+`2022-01-26`
+
+**Feature**
+
+- Locale: add Hindi translation [#10248](https://github.com/youzan/vant/issues/10248)
+- Locale: add Korean translations [#10243](https://github.com/youzan/vant/issues/10243)
+- improve cursor of haptics elements [#10232](https://github.com/youzan/vant/issues/10232)
+
+**Bug Fixes**
+
+- Icon: remove white space under image when using image URL [#10220](https://github.com/youzan/vant/issues/10220)
+- TreeSelect: click-nav event not work when clicking active item [#10239](https://github.com/youzan/vant/issues/10239)
+
+### [v3.4.2](https://github.com/compare/v3.4.1...v3.4.2)
+
+`2022-01-17`
+
+**Feature**
+
+- Cascader: add show-header prop [#10202](https://github.com/youzan/vant/issues/10202)
+- Image: add position prop [#10142](https://github.com/youzan/vant/issues/10142)
+- ImagePreview: improve zoom fluency [#10187](https://github.com/youzan/vant/issues/10187)
+- Overlay: add lazy-render prop [#10180](https://github.com/youzan/vant/issues/10180)
+- provide english version of web-types [#10207](https://github.com/youzan/vant/issues/10207)
+
+**Bug Fixes**
+
+- Calendar: incorrectly selected when a date is disabled [#10196](https://github.com/youzan/vant/issues/10196)
+- Image: failed to hide loading when using lazy-load [#10193](https://github.com/youzan/vant/issues/10193)
+- ImagePreview: incorrectly closed after zooming [#10188](https://github.com/youzan/vant/issues/10188)
+- Skeleton: row prop can't be string type [#10172](https://github.com/youzan/vant/issues/10172)
+- useHeight may get the wrong height [#10195](https://github.com/youzan/vant/issues/10195)
+
+### [v3.4.1](https://github.com/compare/v3.4.0...v3.4.1)
+
+`2022-01-10`
+
+**Bug Fixes**
+
+- Area: missing picker mask [#10164](https://github.com/youzan/vant/issues/10164)
+- DatetimePicker: error in some edge cases [#10140](https://github.com/youzan/vant/issues/10140)
+- Popover: fix gap under the triangle [#10148](https://github.com/youzan/vant/issues/10148)
+
+### [v3.4.0](https://github.com/compare/v3.3.7...v3.4.0)
+
+`2022-01-01`
+
+**Bug Fixes**
+
+- Icons: complete https protocol [#10079](https://github.com/youzan/vant/issues/10079)
+- Picker: should not render mask and frame when options is empty [#10135](https://github.com/youzan/vant/issues/10135)
+- Popup: close event emitted twice [#10132](https://github.com/youzan/vant/issues/10132)
+- PullRefresh: may trigger browser bounce in some cases [#10080](https://github.com/youzan/vant/issues/10080)
+- Step: fix inactive title style [#10049](https://github.com/youzan/vant/issues/10049)
+- SwipeCell: should not trigger open event when opened [#10059](https://github.com/youzan/vant/issues/10059)
+- swipe: delay load cause swipe error [#10052](https://github.com/youzan/vant/issues/10052) [#10069](https://github.com/youzan/vant/issues/10069)
+- Tabs: should not render line when have no tab [#10063](https://github.com/youzan/vant/issues/10063)
+
+**Feature**
+
+- ActionBarIcon: add badge-props prop [#10096](https://github.com/youzan/vant/issues/10096)
+- ActionSheet: add option slot [#10065](https://github.com/youzan/vant/issues/10065)
+- Badge: add badge-props prop [#10095](https://github.com/youzan/vant/issues/10095)
+- GridItem: add badge-props prop [#10097](https://github.com/youzan/vant/issues/10097)
+- Icons: add cash-o icon [#10076](https://github.com/youzan/vant/issues/10076)
+- ImagePreview: add overlayClass option [#10044](https://github.com/youzan/vant/issues/10044)
+- Notify: add position prop [#10056](https://github.com/youzan/vant/issues/10056)
+- Popover: add action slot [#10091](https://github.com/youzan/vant/issues/10091)
+- Search: add click-left-icon、click-right-icon event [#10139](https://github.com/youzan/vant/issues/10139)
+- SidebarItem: add badge-props prop [#10106](https://github.com/youzan/vant/issues/10106)
+- Swipe: indicator slot add total param [#10060](https://github.com/youzan/vant/issues/10060)
+- TabbarItem: add badge-props prop [#10092](https://github.com/youzan/vant/issues/10092)
+- Tabs: add shrink prop [#10125](https://github.com/youzan/vant/issues/10125)
+
+**style**
+
+- PullRefresh: remove user-select: none [#10078](https://github.com/youzan/vant/issues/10078)
+- TreeSelect: allow select text in content slot [#10081](https://github.com/youzan/vant/issues/10081)
+
+**Types**
+
+- define global components for volar [#10136](https://github.com/youzan/vant/issues/10136)
+- Field: type prop allow all native types [#10042](https://github.com/youzan/vant/issues/10042)
+- Popup: add PopupInstance type [#10062](https://github.com/youzan/vant/issues/10062)
+- Search: fix missing event typing [#10134](https://github.com/youzan/vant/issues/10134)
+
+### [v3.3.7](https://github.com/compare/v3.3.6...v3.3.7)
+
+`2021-12-12`
+
+**Feature**
+
+- Badge: add position prop [#10024](https://github.com/youzan/vant/issues/10024)
+
+**Bug Fixes**
+
+- DatetimePicker: should update value after calling picker methods [#10029](https://github.com/youzan/vant/issues/10029)
+- Field: fix the length of emoji [#10033](https://github.com/youzan/vant/issues/10033)
+- Pagination: change event not work [#10018](https://github.com/youzan/vant/issues/10018)
+- fix tree shaking is broken [#10034](https://github.com/youzan/vant/issues/10034)
+
+### [v3.3.6](https://github.com/compare/v3.3.5...v3.3.6)
+
+`2021-12-05`
+
+**Bug Fixes**
+
+- fix ssr.js require path [#9999](https://github.com/youzan/vant/issues/9999)
+
+### [v3.3.5](https://github.com/compare/v3.3.4...v3.3.5)
+
+`2021-12-02`
+
+**Bug Fixes**
+
+- fix exports field break SSR [#9988](https://github.com/youzan/vant/issues/9988)
+- fix exports field break unplugin-vue-components [#9985](https://github.com/youzan/vant/issues/9985)
+
+### [v3.3.4](https://github.com/compare/v3.3.3...v3.3.4)
+
+`2021-12-01`
+
+- fix `lib/ssr.js` not exist
+
+### [v3.3.3](https://github.com/compare/v3.3.2...v3.3.3)
+
+`2021-11-30`
+
+**Feature**
+
+- Support nuxt3 [#9970](https://github.com/youzan/vant/issues/9970)
+- Locale: add pt-BR locale [#9959](https://github.com/youzan/vant/issues/9959)
+
+**Bug Fixes**
+
+- Swipe: fix incorrect border radius in iOS safari [#9958](https://github.com/youzan/vant/issues/9958)
+- Uploader: fix preview is slow when sum of images size be bigger [#9961](https://github.com/youzan/vant/issues/9961)
+
+### [v3.3.2](https://github.com/compare/v3.3.1...v3.3.2)
+
+`2021-11-28`
+
+**Feature**
+
+- add exports field and use bundled output by default [#9952](https://github.com/youzan/vant/issues/9952)
+- Tabbar: support highlighted with child route [#9926](https://github.com/youzan/vant/issues/9926)
+
+**Bug Fixes**
+
+- Calendar: auto selected to max range when show-confirm is false [#9948](https://github.com/youzan/vant/issues/9948)
+- Calendar: should scroll to current date instead of current month [#9949](https://github.com/youzan/vant/issues/9949)
+- Swipe: should prevent touchmove event when swiping [#9920](https://github.com/youzan/vant/issues/9920)
+- Tabs: rename wrapper class to `van-tab__panel-wrapper` [#9951](https://github.com/youzan/vant/issues/9951)
+
+### [v3.3.1](https://github.com/compare/v3.3.0...v3.3.1)
+
+`2021-11-23`
+
+**Bug Fixes**
+
+- AddressEdit: should not emit save event when validation failed [#9917](https://github.com/youzan/vant/issues/9917)
+
+### [v3.3.0](https://github.com/compare/v3.2.8...v3.3.0)
+
+`2021-11-19`
+
+**Accessibility**
+
+- Cascader: add role, aria and tabindex [#9886](https://github.com/youzan/vant/issues/9886)
+- CountDown: add timer role [#9906](https://github.com/youzan/vant/issues/9906)
+- DropdownMenu: add role, aria and tabindex [#9893](https://github.com/youzan/vant/issues/9893)
+- Field: add aria-labelledby [#9883](https://github.com/youzan/vant/issues/9883)
+- List: add role and tabindex [#9888](https://github.com/youzan/vant/issues/9888)
+- Pagination: refactor DOM to improve a11y [#9901](https://github.com/youzan/vant/issues/9901)
+- Popover: add tabindex and aria-disabled [#9889](https://github.com/youzan/vant/issues/9889)
+- Rate: improve a11y when disabled or readonly [#9881](https://github.com/youzan/vant/issues/9881)
+- Search: id prop add default value [#9884](https://github.com/youzan/vant/issues/9884)
+- Sidebar: add role, aria and tabindex [#9903](https://github.com/youzan/vant/issues/9903)
+- Slider: improve a11y when disabled or readonly [#9880](https://github.com/youzan/vant/issues/9880)
+- Stepper: add aria-disabled [#9877](https://github.com/youzan/vant/issues/9877)
+- Stepper: add group role [#9876](https://github.com/youzan/vant/issues/9876)
+- Switch: add tabindex [#9887](https://github.com/youzan/vant/issues/9887)
+- Tabbar: add role, aria and tabindex [#9895](https://github.com/youzan/vant/issues/9895)
+- Tabs: add aria-controls [#9882](https://github.com/youzan/vant/issues/9882)
+- Tabs: add aria-disabled [#9878](https://github.com/youzan/vant/issues/9878)
+- Tabs: add aria-orientation and tabindex [#9872](https://github.com/youzan/vant/issues/9872)
+- Uploader: add role, aria and tabindex [#9905](https://github.com/youzan/vant/issues/9905)
+- remove tabindex from disabled elements [#9879](https://github.com/youzan/vant/issues/9879)
+
+**Feature**
+
+- Popup: reduce unused listener [#9896](https://github.com/youzan/vant/issues/9896)
+- Field: expose sub-types of FieldRule [#9843](https://github.com/youzan/vant/issues/9843)
+- minify svg icons [#9869](https://github.com/youzan/vant/issues/9869)
+
+**Bug Fixes**
+
+- Popover: useClickAway failed in SSR [#9899](https://github.com/youzan/vant/issues/9899)
+- CouponList: incorrect list height [#9874](https://github.com/youzan/vant/issues/9874)
+- Field: should not trigger validation after blurring readonly input [#9862](https://github.com/youzan/vant/issues/9862)
+- Switch: switch node inherit font-size [#9842](https://github.com/youzan/vant/issues/9842)
+- Tabbar: before-change not work in route mode [#9856](https://github.com/youzan/vant/issues/9856)
+- Tabs: rename panel class to `van-tab__panel` [#9885](https://github.com/youzan/vant/issues/9885)
+
 ### [v3.2.8](https://github.com/compare/v3.2.7...v3.2.8)
 
 `2021-11-09`
 
 **Feature**
 
-- Cascader: add options-bottom slot [#9804](https://github.com/issues/9804)
+- Cascader: add options-bottom slot [#9804](https://github.com/youzan/vant/issues/9804)
 - SubmitBar: add SubmitBarTextAlign type [f95567](https://github.com/commit/f95567ade758d453f4acad8a40d8ae717035476a)
-- PasswordInput: add PasswordInputProps type [#9820](https://github.com/issues/9820)
+- PasswordInput: add PasswordInputProps type [#9820](https://github.com/youzan/vant/issues/9820)
 
 **Bug Fixes**
 
-- NavBar: fix NavBarProps spelling [#9818](https://github.com/issues/9818)
-- Progress: incorrect border-radius [#9826](https://github.com/issues/9826)
-- SubmitBar: fix missing SubmitBarProps export [#9819](https://github.com/issues/9819)
-- Tabs: should emit click-tab after before-change [#9805](https://github.com/issues/9805)
+- NavBar: fix NavBarProps spelling [#9818](https://github.com/youzan/vant/issues/9818)
+- Progress: incorrect border-radius [#9826](https://github.com/youzan/vant/issues/9826)
+- SubmitBar: fix missing SubmitBarProps export [#9819](https://github.com/youzan/vant/issues/9819)
+- Tabs: should emit click-tab after before-change [#9805](https://github.com/youzan/vant/issues/9805)
 
 ### [v3.2.7](https://github.com/youzan/vant/compare/v3.2.6...v3.2.7)
 
@@ -464,7 +776,7 @@ Vant follows [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/).
 
 **Bug Fixes**
 
-- fix incorrect tag prompts under Webstorm [#8450](https://github.com/youzan/vant/issues/8450)
+- fix incorrect tag prompts under WebStorm [#8450](https://github.com/youzan/vant/issues/8450)
 
 ### [v3.0.11](https://github.com/youzan/vant/compare/v3.0.10...v3.0.11)
 
@@ -722,7 +1034,7 @@ Reference: [Vant 3.0 正式发布：全面拥抱 Vue 3](https://github.com/youza
 
 - add Cascader component [#7771](https://github.com/youzan/vant/pull/7771)
 
-<img src="https://b.yzcdn.cn/vant/cascader_1221.png">
+<img src="https://cdn.jsdelivr.net/npm/@vant/assets/cascader_1221.png">
 
 **Feature**
 

@@ -5,10 +5,10 @@ import {
   computed,
   nextTick,
   reactive,
-  PropType,
   onMounted,
   defineComponent,
-  ExtractPropTypes,
+  type PropType,
+  type ExtractPropTypes,
 } from 'vue';
 
 // Utils
@@ -16,6 +16,7 @@ import {
   isDef,
   extend,
   addUnit,
+  toArray,
   FORM_KEY,
   numericProp,
   unknownProp,
@@ -27,18 +28,21 @@ import {
   createNamespace,
 } from '../utils';
 import {
+  cutString,
   runSyncRule,
   endComposing,
   mapInputType,
   startComposing,
   getRuleMessage,
   resizeTextarea,
+  getStringLength,
   runRuleValidator,
 } from './utils';
 import { cellSharedProps } from '../cell/Cell';
 
 // Composables
 import { CUSTOM_FIELD_INJECTION_KEY, useParent } from '@vant/use';
+import { useId } from '../composables/use-id';
 import { useExpose } from '../composables/use-expose';
 
 // Components
@@ -77,6 +81,7 @@ export const fieldSharedProps = {
   placeholder: String,
   autocomplete: String,
   errorMessage: String,
+  enterkeyhint: String,
   clearTrigger: makeStringProp<FieldClearTrigger>('focus'),
   formatTrigger: makeStringProp<FieldFormatTrigger>('onChange'),
   error: {
@@ -128,6 +133,7 @@ export default defineComponent({
   ],
 
   setup(props, { emit, slots }) {
+    const id = useId();
     const state = reactive({
       focused: false,
       validateFailed: false,
@@ -234,12 +240,12 @@ export default defineComponent({
 
     const validateWithTrigger = (trigger: FieldValidateTrigger) => {
       if (form && props.rules) {
-        const defaultTrigger = form.props.validateTrigger === trigger;
+        const { validateTrigger } = form.props;
+        const defaultTrigger = toArray(validateTrigger).includes(trigger);
         const rules = props.rules.filter((rule) => {
           if (rule.trigger) {
-            return rule.trigger === trigger;
+            return toArray(rule.trigger).includes(trigger);
           }
-
           return defaultTrigger;
         });
 
@@ -253,12 +259,12 @@ export default defineComponent({
     // see: https://github.com/youzan/vant/issues/5033
     const limitValueLength = (value: string) => {
       const { maxlength } = props;
-      if (isDef(maxlength) && value.length > maxlength) {
+      if (isDef(maxlength) && getStringLength(value) > maxlength) {
         const modelValue = getModelValue();
-        if (modelValue && modelValue.length === +maxlength) {
+        if (modelValue && getStringLength(modelValue) === +maxlength) {
           return modelValue;
         }
-        return value.slice(0, +maxlength);
+        return cutString(value, +maxlength);
       }
       return value;
     };
@@ -376,6 +382,8 @@ export default defineComponent({
       emit('keypress', event);
     };
 
+    const getInputId = () => props.id || `${id}-input`;
+
     const renderInput = () => {
       const controlClass = bem('control', [
         getProp('inputAlign'),
@@ -395,17 +403,18 @@ export default defineComponent({
       }
 
       const inputAttrs = {
-        id: props.id,
+        id: getInputId(),
         ref: inputRef,
         name: props.name,
         rows: props.rows !== undefined ? +props.rows : undefined,
         class: controlClass,
-        value: props.modelValue,
         disabled: getProp('disabled'),
         readonly: getProp('readonly'),
         autofocus: props.autofocus,
         placeholder: props.placeholder,
         autocomplete: props.autocomplete,
+        enterkeyhint: props.enterkeyhint,
+        'aria-labelledby': props.label ? `${id}-label` : undefined,
         onBlur,
         onFocus,
         onInput,
@@ -457,7 +466,7 @@ export default defineComponent({
 
     const renderWordLimit = () => {
       if (props.showWordLimit && props.maxlength) {
-        const count = getModelValue().length;
+        const count = getStringLength(getModelValue());
         return (
           <div class={bem('word-limit')}>
             <span class={bem('word-num')}>{count}</span>/{props.maxlength}
@@ -491,7 +500,11 @@ export default defineComponent({
         return [slots.label(), colon];
       }
       if (props.label) {
-        return <label for={props.id}>{props.label + colon}</label>;
+        return (
+          <label id={`${id}-label`} for={getInputId()}>
+            {props.label + colon}
+          </label>
+        );
       }
     };
 

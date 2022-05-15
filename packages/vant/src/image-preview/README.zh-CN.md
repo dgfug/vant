@@ -11,7 +11,7 @@
 ```js
 import { ImagePreview } from 'vant';
 
-ImagePreview(['https://img.yzcdn.cn/vant/apple-1.jpg']);
+ImagePreview(['https://cdn.jsdelivr.net/npm/@vant/assets/apple-1.jpeg']);
 ```
 
 ### 组件调用
@@ -57,8 +57,8 @@ export default {
 
 ```js
 ImagePreview([
-  'https://img.yzcdn.cn/vant/apple-1.jpg',
-  'https://img.yzcdn.cn/vant/apple-2.jpg',
+  'https://cdn.jsdelivr.net/npm/@vant/assets/apple-1.jpeg',
+  'https://cdn.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
 ]);
 ```
 
@@ -69,8 +69,8 @@ ImagePreview([
 ```js
 ImagePreview({
   images: [
-    'https://img.yzcdn.cn/vant/apple-1.jpg',
-    'https://img.yzcdn.cn/vant/apple-2.jpg',
+    'https://cdn.jsdelivr.net/npm/@vant/assets/apple-1.jpeg',
+    'https://cdn.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
   ],
   startPosition: 1,
 });
@@ -83,8 +83,8 @@ ImagePreview({
 ```js
 ImagePreview({
   images: [
-    'https://img.yzcdn.cn/vant/apple-1.jpg',
-    'https://img.yzcdn.cn/vant/apple-2.jpg',
+    'https://cdn.jsdelivr.net/npm/@vant/assets/apple-1.jpeg',
+    'https://cdn.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
   ],
   closeable: true,
 });
@@ -99,8 +99,8 @@ import { Toast } from 'vant';
 
 ImagePreview({
   images: [
-    'https://img.yzcdn.cn/vant/apple-1.jpg',
-    'https://img.yzcdn.cn/vant/apple-2.jpg',
+    'https://cdn.jsdelivr.net/npm/@vant/assets/apple-1.jpeg',
+    'https://cdn.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
   ],
   onClose() {
     Toast('关闭');
@@ -115,8 +115,8 @@ ImagePreview({
 ```js
 const instance = ImagePreview({
   images: [
-    'https://img.yzcdn.cn/vant/apple-1.jpg',
-    'https://img.yzcdn.cn/vant/apple-2.jpg',
+    'https://cdn.jsdelivr.net/npm/@vant/assets/apple-1.jpeg',
+    'https://cdn.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
   ],
   beforeClose: () => false,
 });
@@ -145,8 +145,8 @@ export default {
     const show = ref(false);
     const index = ref(0);
     const images = [
-      'https://img.yzcdn.cn/vant/apple-1.jpg',
-      'https://img.yzcdn.cn/vant/apple-2.jpg',
+      'https://cdn.jsdelivr.net/npm/@vant/assets/apple-1.jpeg',
+      'https://cdn.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
     ];
     const onChange = (newIndex) => {
       index.value = newIndex;
@@ -188,7 +188,8 @@ export default {
 | closeIcon | 关闭图标名称或图片链接 | _string_ | `clear` |
 | closeIconPosition | 关闭图标位置，可选值为 `top-left`<br>`bottom-left` `bottom-right` | _string_ | `top-right` |
 | transition `v3.0.8` | 动画类名，等价于 [transition](https://v3.cn.vuejs.org/api/built-in-components.html#transition) 的 `name` 属性 | _string_ | `van-fade` |
-| overlay-style `v3.0.8` | 自定义遮罩层样式 | _object_ | - |
+| overlayClass `v3.2.8` | 自定义遮罩层类名 | _string \| Array \| object_ | - |
+| overlayStyle `v3.0.8` | 自定义遮罩层样式 | _object_ | - |
 | teleport | 指定挂载的节点，等同于 Teleport 组件的 [to 属性](https://v3.cn.vuejs.org/api/built-in-components.html#teleport) | _string \| Element_ | - |
 
 ### Props
@@ -213,6 +214,7 @@ export default {
 | close-icon | 关闭图标名称或图片链接 | _string_ | `clear` |
 | close-icon-position | 关闭图标位置，可选值为 `top-left`<br>`bottom-left` `bottom-right` | _string_ | `top-right` |
 | transition `v3.0.8` | 动画类名，等价于 [transition](https://v3.cn.vuejs.org/api/built-in-components.html#transition) 的 `name` 属性 | _string_ | `van-fade` |
+| overlay-class `v3.2.8` | 自定义遮罩层类名 | _string \| Array \| object_ | - |
 | overlay-style `v3.0.8` | 自定义遮罩层样式 | _object_ | - |
 | teleport | 指定挂载的节点，等同于 Teleport 组件的 [to 属性](https://v3.cn.vuejs.org/api/built-in-components.html#teleport) | _string \| Element_ | - |
 

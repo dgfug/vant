@@ -124,10 +124,22 @@ export default {
 
 ### Sticky
 
-In sticky mode, the tab will be fixed to top when scroll to top.
+In sticky mode, the tab nav will be fixed to top when scroll to top.
 
 ```html
 <van-tabs v-model:active="active" sticky>
+  <van-tab v-for="index in 4" :title="'tab ' + index">
+    content {{ index }}
+  </van-tab>
+</van-tabs>
+```
+
+### Shrink
+
+In shrink mode, the tabs will be shrinked to the left.
+
+```html
+<van-tabs v-model:active="active" shrink>
   <van-tab v-for="index in 4" :title="'tab ' + index">
     content {{ index }}
   </van-tab>
@@ -236,6 +248,7 @@ export default {
 | border | Whether to show border when `type="line"` | _boolean_ | `false` |
 | ellipsis | Whether to ellipsis too long title | _boolean_ | `true` |
 | sticky | Whether to use sticky mode | _boolean_ | `false` |
+| shrink `v3.2.8` | Whether to shrink the the tabs to the left | _boolean_ | `false` |
 | swipeable | Whether to enable gestures to slide left and right | _boolean_ | `false` |
 | lazy-render | Whether to enable tab content lazy render | _boolean_ | `true` |
 | scrollspy | Whether to use scrollspy mode | _boolean_ | `false` |
@@ -243,7 +256,7 @@ export default {
 | swipe-threshold | Set swipe tabs threshold | _number \| string_ | `5` |
 | title-active-color | Title active color | _string_ | - |
 | title-inactive-color | Title inactive color | _string_ | - |
-| before-change | Callback function before changing tabs，return `false` to prevent change，support return Promise | _(name: number \| string) => boolean \| Promise\<boolean\>_ | - |
+| before-change | Callback function before changing tabs, return `false` to prevent change, support return Promise | _(name: number \| string) => boolean \| Promise\<boolean\>_ | - |
 
 ### Tab Props
 
@@ -270,7 +283,7 @@ export default {
 | rendered | Emitted when content first rendered in lazy-render mode | _name: string \| number, title: string_ |
 | scroll | Emitted when tab scrolling in sticky mode | _{ scrollTop: number, isFixed: boolean }_ |
 
-> Tips：click and disabled event is deprecated，place use click-tab event instead.
+> Tips: click and disabled event is deprecated, place use click-tab event instead.
 
 ### Tabs Methods
 

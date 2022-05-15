@@ -1,4 +1,4 @@
-import { computed, defineComponent, ExtractPropTypes } from 'vue';
+import { computed, defineComponent, type ExtractPropTypes } from 'vue';
 import {
   extend,
   addUnit,
@@ -62,7 +62,11 @@ export default defineComponent({
     return () => {
       const { type, vertical } = props;
       return (
-        <div class={bem([type, { vertical }])}>
+        <div
+          class={bem([type, { vertical }])}
+          aria-live="polite"
+          aria-busy={true}
+        >
           <span class={bem('spinner', type)} style={spinnerStyle.value}>
             {type === 'spinner' ? SpinIcon : CircularIcon}
           </span>

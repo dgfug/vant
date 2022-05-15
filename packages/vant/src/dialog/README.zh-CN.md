@@ -58,13 +58,13 @@ export default {
 ```js
 Dialog.alert({
   title: '标题',
-  message: '弹窗内容',
+  message: '代码是写出来给人看的，附带能在机器上运行。',
 }).then(() => {
   // on close
 });
 
 Dialog.alert({
-  message: '弹窗内容',
+  message: '生命远不止连轴转和忙到极限，人类的体验远比这辽阔、丰富得多。',
 }).then(() => {
   // on close
 });
@@ -77,7 +77,8 @@ Dialog.alert({
 ```js
 Dialog.confirm({
   title: '标题',
-  message: '弹窗内容',
+  message:
+    '如果解决方法是丑陋的，那就肯定还有更好的解决方法，只是还没有发现而已。',
 })
   .then(() => {
     // on confirm
@@ -94,14 +95,14 @@ Dialog.confirm({
 ```js
 Dialog.alert({
   title: '标题',
-  message: '弹窗内容',
+  message: '代码是写出来给人看的，附带能在机器上运行。',
   theme: 'round-button',
 }).then(() => {
   // on close
 });
 
 Dialog.alert({
-  message: '弹窗内容',
+  message: '生命远不止连轴转和忙到极限，人类的体验远比这辽阔、丰富得多。',
   theme: 'round-button',
 }).then(() => {
   // on close
@@ -127,7 +128,8 @@ const beforeClose = (action) =>
 
 Dialog.confirm({
   title: '标题',
-  message: '弹窗内容',
+  message:
+    '如果解决方法是丑陋的，那就肯定还有更好的解决方法，只是还没有发现而已。',
   beforeClose,
 });
 ```
@@ -154,7 +156,7 @@ export default {
 
 ```html
 <van-dialog v-model:show="show" title="标题" show-cancel-button>
-  <img src="https://img.yzcdn.cn/vant/apple-3.jpg" />
+  <img src="https://cdn.jsdelivr.net/npm/@vant/assets/apple-3.jpeg" />
 </van-dialog>
 ```
 
@@ -220,7 +222,7 @@ export default {
 | v-model:show | 是否显示弹窗 | _boolean_ | - |
 | title | 标题 | _string_ | - |
 | width | 弹窗宽度，默认单位为 `px` | _number \| string_ | `320px` |
-| message | 文本内容，支持通过 `\n` 换行 | _string \| () => JSX.ELement_ | - |
+| message | 文本内容，支持通过 `\n` 换行 | _string \| () => JSX.Element_ | - |
 | message-align | 内容水平对齐方式，可选值为 `left` `right` | _string_ | `center` |
 | theme | 样式风格，可选值为 `round-button` | _string_ | `default` |
 | show-confirm-button | 是否展示确认按钮 | _boolean_ | `true` |

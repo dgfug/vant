@@ -1,11 +1,11 @@
-import { PropType, defineComponent, ExtractPropTypes } from 'vue';
+import { defineComponent, type PropType, type ExtractPropTypes } from 'vue';
 
 // Utils
 import {
   FORM_KEY,
   truthProp,
   numericProp,
-  makeStringProp,
+  preventDefault,
   createNamespace,
 } from '../utils';
 
@@ -34,9 +34,14 @@ const formProps = {
   scrollToError: Boolean,
   validateFirst: Boolean,
   submitOnEnter: truthProp,
-  validateTrigger: makeStringProp<FieldValidateTrigger>('onBlur'),
   showErrorMessage: truthProp,
   errorMessageAlign: String as PropType<FieldTextAlign>,
+  validateTrigger: {
+    type: [String, Array] as PropType<
+      FieldValidateTrigger | FieldValidateTrigger[]
+    >,
+    default: 'onBlur',
+  },
 };
 
 export type FormProps = ExtractPropTypes<typeof formProps>;
@@ -150,10 +155,10 @@ export default defineComponent({
     };
 
     const getValues = () =>
-      children.reduce((form, field) => {
+      children.reduce<Record<string, unknown>>((form, field) => {
         form[field.name] = field.formValue.value;
         return form;
-      }, {} as Record<string, unknown>);
+      }, {});
 
     const submit = () => {
       const values = getValues();
@@ -170,7 +175,7 @@ export default defineComponent({
     };
 
     const onSubmit = (event: Event) => {
-      event.preventDefault();
+      preventDefault(event);
       submit();
     };
 
@@ -178,6 +183,7 @@ export default defineComponent({
     useExpose<FormExpose>({
       submit,
       validate,
+      getValues,
       scrollToField,
       resetValidation,
     });

@@ -1,4 +1,4 @@
-import { watch, computed, defineComponent, ExtractPropTypes } from 'vue';
+import { watch, computed, defineComponent, type ExtractPropTypes } from 'vue';
 
 // Utils
 import {
@@ -58,7 +58,7 @@ export default defineComponent({
     });
 
     return () => (
-      <div class={bem()}>
+      <div role="timer" class={bem()}>
         {slots.default ? slots.default(current.value) : timeText.value}
       </div>
     );

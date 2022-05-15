@@ -28,7 +28,6 @@ test('simple columns confirm & cancel event', () => {
   expect(wrapper.emitted('cancel')![0]).toEqual(['1990', 0]);
   wrapper.unmount();
 });
-
 test('multiple columns confirm & cancel event', () => {
   const wrapper = mount(Picker, {
     props: {
@@ -58,7 +57,7 @@ test('set picker values', () => {
   const vm = wrapper.vm as Record<string, any>;
 
   expect(vm.getColumnValues(-1)).toEqual(undefined);
-  expect(vm.getColumnValues(1).length).toEqual(6);
+  expect(vm.getColumnValues(1)).toHaveLength(6);
   expect(vm.getColumnValue(1)).toEqual('1990');
 
   vm.setColumnValue(0, 'normal');
@@ -71,11 +70,11 @@ test('set picker values', () => {
   expect(vm.getColumnValue(1)).toEqual('1991');
 
   vm.setColumnValues(0, ['vip', 'normal', 'other']);
-  expect(vm.getColumnValues(0).length).toEqual(3);
-  expect(vm.getValues().length).toEqual(2);
+  expect(vm.getColumnValues(0)).toHaveLength(3);
+  expect(vm.getValues()).toHaveLength(2);
 
   vm.setColumnValues(-1, []);
-  expect(vm.getValues().length).toEqual(2);
+  expect(vm.getValues()).toHaveLength(2);
 
   vm.setValues(['vip', '1992']);
   expect(vm.getColumnIndex(1)).toEqual(2);
@@ -344,4 +343,43 @@ test('readonly prop', () => {
   wrapper.findAll('.van-picker-column__item')[3].trigger('click');
 
   expect(wrapper.emitted('change')).toBeFalsy();
+});
+
+test('should not render mask and frame when options is empty', async () => {
+  const wrapper = mount(Picker, {
+    props: {
+      columns: [{ values: [] }],
+    },
+  });
+  expect(wrapper.find('.van-picker__mask').exists()).toBeFalsy();
+  expect(wrapper.find('.van-picker__frame').exists()).toBeFalsy();
+
+  await wrapper.setProps({ columns: [{ values: ['foo'] }] });
+  expect(wrapper.find('.van-picker__mask').exists()).toBeTruthy();
+  expect(wrapper.find('.van-picker__frame').exists()).toBeTruthy();
+});
+
+test('columns-field-names responsiveness', async () => {
+  const columnsOne = [
+    { type: 1, name: 'Ios' },
+    { type: 2, name: 'Android' },
+  ];
+  const columnsTwo = [
+    { type: 1, serverName: 'server1' },
+    { type: 2, serverName: 'server2' },
+  ];
+  const wrapper = mount(Picker, {
+    props: {
+      columns: columnsOne,
+      columnsFieldNames: {
+        text: 'name',
+      },
+    },
+  });
+  expect(wrapper.findAll('.van-ellipsis')[0].text()).toEqual('Ios');
+  await wrapper.setProps({
+    columns: columnsTwo,
+    columnsFieldNames: { text: 'serverName' },
+  });
+  expect(wrapper.findAll('.van-ellipsis')[0].text()).toEqual('server1');
 });

@@ -1,10 +1,10 @@
 import {
   watch,
   computed,
-  PropType,
-  CSSProperties,
   defineComponent,
-  ExtractPropTypes,
+  type PropType,
+  type CSSProperties,
+  type ExtractPropTypes,
 } from 'vue';
 import { raf, cancelRaf } from '@vant/use';
 import {
@@ -16,13 +16,14 @@ import {
   makeNumberProp,
   makeNumericProp,
   createNamespace,
+  type Numeric,
 } from '../utils';
 
 const [name, bem] = createNamespace('circle');
 
 let uid = 0;
 
-const format = (rate: string | number) => Math.min(Math.max(+rate, 0), 100);
+const format = (rate: Numeric) => Math.min(Math.max(+rate, 0), 100);
 
 function getPath(clockwise: boolean, viewBoxSize: number) {
   const sweepFlag = clockwise ? 1 : 0;

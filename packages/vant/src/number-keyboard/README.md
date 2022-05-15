@@ -171,7 +171,7 @@ export default {
 | v-model | Current value | _string_ | - |
 | show | Whether to show keyboard | _boolean_ | - |
 | title | Keyboard title | _string_ | - |
-| theme | Keyboard theme，can be set to `custom` | _string_ | `default` |
+| theme | Keyboard theme, can be set to `custom` | _string_ | `default` |
 | maxlength | Value maxlength | _number \| string_ | `Infinity` |
 | transition | Whether to show transition animation | _boolean_ | `true` |
 | z-index | Keyboard z-index | _number \| string_ | `100` |
@@ -190,7 +190,7 @@ export default {
 
 | Event | Description | Arguments |
 | --- | --- | --- |
-| input | Emitted when a key is pressed | key: Content of the key |
+| input | Emitted when a key is pressed | _key: string_ |
 | delete | Emitted when the delete key is pressed | - |
 | close | Emitted when the close button is clicked | - |
 | blur | Emitted when the close button is clicked or the keyboard is blurred | - |

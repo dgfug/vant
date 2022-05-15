@@ -1,4 +1,4 @@
-import { defineComponent, InjectionKey, ExtractPropTypes } from 'vue';
+import { defineComponent, type InjectionKey, type ExtractPropTypes } from 'vue';
 import { makeNumericProp, createNamespace } from '../utils';
 import { useChildren } from '@vant/use';
 
@@ -41,6 +41,10 @@ export default defineComponent({
       setActive,
     });
 
-    return () => <div class={bem()}>{slots.default?.()}</div>;
+    return () => (
+      <div role="tablist" class={bem()}>
+        {slots.default?.()}
+      </div>
+    );
   },
 });

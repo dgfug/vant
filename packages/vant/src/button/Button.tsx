@@ -1,14 +1,15 @@
 import {
-  PropType,
-  CSSProperties,
   defineComponent,
-  ExtractPropTypes,
+  type PropType,
+  type CSSProperties,
+  type ExtractPropTypes,
 } from 'vue';
 
 // Utils
 import {
   extend,
   numericProp,
+  preventDefault,
   makeStringProp,
   createNamespace,
   BORDER_SURROUND,
@@ -135,7 +136,7 @@ export default defineComponent({
 
     const onClick = (event: MouseEvent) => {
       if (props.loading) {
-        event.preventDefault();
+        preventDefault(event);
       } else if (!props.disabled) {
         emit('click', event);
         route();
